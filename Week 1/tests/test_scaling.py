@@ -9,7 +9,7 @@ def test_scale_factor_clamping():
         id="sample_recipe",
         name="Sample Dish",
         servings=1,
-        method="pan_fry",
+        method="microwave",
         ingredients=[
             IngredientItem(id="chicken_breast_raw", grams=200.0, role="bulk_protein")
         ]
