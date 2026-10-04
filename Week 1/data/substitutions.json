@@ -1,0 +1,79 @@
+{
+  "acid": [
+    {"id": "lemon_juice", "ratio": 1.0},
+    {"id": "lime_juice", "ratio": 1.0},
+    {"id": "vinegar", "ratio": 0.5},
+    {"id": "apple_cider_vinegar", "ratio": 0.5},
+    {"id": "tomato", "ratio": 3.0},
+    {"id": "tomato_paste", "ratio": 0.4}
+  ],
+  "fat": [
+    {"id": "olive_oil", "ratio": 1.0},
+    {"id": "butter", "ratio": 1.0},
+    {"id": "ghee", "ratio": 1.0},
+    {"id": "beef_tallow", "ratio": 1.0},
+    {"id": "coconut_oil", "ratio": 1.0},
+    {"id": "sesame_oil", "ratio": 0.8},
+    {"id": "mayonnaise", "ratio": 1.2}
+  ],
+  "umami": [
+    {"id": "soy_sauce", "ratio": 1.0},
+    {"id": "garlic", "ratio": 1.0},
+    {"id": "tomato_paste", "ratio": 1.0},
+    {"id": "parmesan_cheese", "ratio": 0.8},
+    {"id": "cheddar_cheese", "ratio": 1.0},
+    {"id": "mushroom_white", "ratio": 2.0}
+  ],
+  "creaminess": [
+    {"id": "greek_yogurt", "ratio": 1.0},
+    {"id": "heavy_cream", "ratio": 0.7},
+    {"id": "cottage_cheese", "ratio": 1.0},
+    {"id": "egg_yolk", "ratio": 0.6},
+    {"id": "mayonnaise", "ratio": 0.8},
+    {"id": "milk", "ratio": 1.5}
+  ],
+  "bulk_protein": [
+    {"id": "chicken_breast_raw", "ratio": 1.0},
+    {"id": "chicken_thigh_raw", "ratio": 1.0},
+    {"id": "beef_mince_lean", "ratio": 1.0},
+    {"id": "pork_chop", "ratio": 1.0},
+    {"id": "white_fish_fillet", "ratio": 1.0},
+    {"id": "salmon_raw", "ratio": 1.0},
+    {"id": "tofu_firm", "ratio": 1.2},
+    {"id": "egg_whole", "ratio": 1.2},
+    {"id": "shrimp_raw", "ratio": 1.0},
+    {"id": "tuna_canned", "ratio": 0.9},
+    {"id": "paneer", "ratio": 1.0}
+  ],
+  "starch": [
+    {"id": "potato", "ratio": 1.0},
+    {"id": "sweet_potato", "ratio": 1.0},
+    {"id": "white_rice_dry", "ratio": 0.4},
+    {"id": "rolled_oats", "ratio": 0.4},
+    {"id": "cauliflower", "ratio": 1.5}
+  ],
+  "sweet": [
+    {"id": "honey", "ratio": 1.0},
+    {"id": "maple_syrup", "ratio": 1.0},
+    {"id": "tomato", "ratio": 2.0},
+    {"id": "onion", "ratio": 2.0},
+    {"id": "carrot", "ratio": 2.0}
+  ],
+  "heat": [
+    {"id": "black_pepper", "ratio": 1.0},
+    {"id": "red_chilli_powder", "ratio": 0.5},
+    {"id": "green_chilli", "ratio": 1.5},
+    {"id": "mustard", "ratio": 1.5},
+    {"id": "ginger", "ratio": 1.5},
+    {"id": "hot_sauce", "ratio": 1.0}
+  ],
+  "crunch": [
+    {"id": "cucumber", "ratio": 1.0},
+    {"id": "bell_pepper", "ratio": 1.0},
+    {"id": "broccoli_raw", "ratio": 1.0},
+    {"id": "cauliflower", "ratio": 1.0},
+    {"id": "cabbage", "ratio": 1.0},
+    {"id": "almonds", "ratio": 0.5},
+    {"id": "peanuts", "ratio": 0.5}
+  ]
+}

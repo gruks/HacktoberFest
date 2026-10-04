@@ -24,6 +24,7 @@ from pantrypal.db import (
     set_pantry_item,
     set_utensils,
 )
+from pantrypal.llm import is_ollama_available
 from pantrypal.models import Profile
 from pantrypal.nutrition import (
     calculate_micro_percentages,
@@ -50,55 +51,18 @@ st.set_page_config(
 # Initialize database
 init_db()
 
-# --- Custom Styling ---
-st.markdown(
-    """
-    <style>
-    .metric-card {
-        background-color: #f8f9fa;
-        border-radius: 8px;
-        padding: 12px;
-        border-left: 5px solid #ff4b4b;
-        margin-bottom: 10px;
-    }
-    .badge-pantry {
-        color: #155724;
-        background-color: #d4edda;
-        padding: 3px 8px;
-        border-radius: 4px;
-        font-weight: 600;
-        font-size: 0.85rem;
-    }
-    .badge-missing {
-        color: #721c24;
-        background-color: #f8d7da;
-        padding: 3px 8px;
-        border-radius: 4px;
-        font-weight: 600;
-        font-size: 0.85rem;
-    }
-    .badge-swapped {
-        color: #856404;
-        background-color: #fff3cd;
-        padding: 3px 8px;
-        border-radius: 4px;
-        font-weight: 600;
-        font-size: 0.85rem;
-    }
-    .recipe-title {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: #1e1e1e;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
 # --- Sidebar: Offline Status & Navigation Context ---
 with st.sidebar:
     st.title("🥘 PantryPal")
     st.caption("100% Private & Offline Kitchen Assistant")
+    st.divider()
+
+    ollama_online = is_ollama_available()
+    if ollama_online:
+        st.success("🟢 Local AI Engine Active (Ollama qwen3-vl:4b)")
+    else:
+        st.warning("⚪ Local AI Offline (Code Heuristics Mode)")
+
     st.divider()
 
     profile_data = get_profile()
@@ -173,7 +137,7 @@ with tab_profile:
             )
             p_meals = st.number_input("Meals per Day", min_value=1, max_value=6, value=curr_p.meals_per_day, step=1)
 
-        submitted = st.form_submit_layer = st.form_submit_button("💾 Save Profile & Update Targets", use_container_width=True)
+        submitted = st.form_submit_button("💾 Save Profile & Update Targets", use_container_width=True)
         if submitted:
             new_profile = Profile(
                 sex=p_sex,
@@ -284,13 +248,13 @@ with tab_kitchen:
 
         st.write("---")
         # Quick-load starter pantry button
-        if st.button("📦 Load Starter Flat Pantry", help="Populates common ingredients: chicken, eggs, garlic, oil, etc."):
+        if st.button("📦 Load Starter Flat Pantry", help="Populates common ingredients: chicken, eggs, garlic, oil, vinegar, etc."):
             starter_items = [
                 ("chicken_thigh_raw", 500.0, False, 1.20),
                 ("egg_whole", 300.0, False, 0.60),  # 6 eggs
                 ("olive_oil", 250.0, False, 1.50),
                 ("garlic", 30.0, False, 0.80),
-                ("lemon_juice", 90.0, False, 0.50),
+                ("vinegar", 200.0, False, 0.40),    # Useful for acid substitution
                 ("salmon_raw", 300.0, False, 2.50),
                 ("butter", 200.0, False, 1.00),
                 ("broccoli_raw", 300.0, False, 0.40),
@@ -337,12 +301,22 @@ with tab_cook:
     elif not owned_utensils:
         st.warning("⚠️ Please select your available utensils in the 'Kitchen & Pantry' tab.")
     else:
-        cook_btn = st.button("🍳 What can I cook tonight?", type="primary", use_container_width=True)
+        c_col1, c_col2 = st.columns([3, 1])
+        with c_col1:
+            cook_btn = st.button("🍳 What can I cook tonight?", type="primary", use_container_width=True)
+        with c_col2:
+            enable_step_rewrites = st.checkbox("Rewrite steps with AI", value=ollama_online, disabled=not ollama_online)
 
         if cook_btn or "recommendations" in st.session_state:
             if cook_btn:
-                with st.spinner("Analyzing pantry coverage, scaling portions, and verifying nutrition..."):
-                    plans = recommend(profile_data, owned_utensils, pantry_data, top_k=5)
+                with st.spinner("Analyzing pantry coverage, resolving substitutions, and verifying nutrition..."):
+                    plans = recommend(
+                        profile_data,
+                        owned_utensils,
+                        pantry_data,
+                        top_k=5,
+                        enable_llm_steps=enable_step_rewrites,
+                    )
                     st.session_state["recommendations"] = plans
 
             plans = st.session_state.get("recommendations", [])
@@ -357,12 +331,26 @@ with tab_cook:
                     cov_pct = int(plan.coverage * 100)
                     cov_color = "🟢" if cov_pct >= 80 else ("🟡" if cov_pct >= 50 else "🔴")
 
-                    with st.expander(f"{cov_color} #{idx}: {rec.name} — {cov_pct}% Pantry Coverage (Scale: {plan.scale}x)", expanded=(idx == 1)):
+                    with st.expander(f"{cov_color} #{idx}: {rec.name} — {cov_pct}% Coverage (Scale: {plan.scale}x)", expanded=(idx == 1)):
                         # Header badges
                         col_h1, col_h2, col_h3 = st.columns(3)
-                        col_h1.metric("Coverage", f"{cov_pct}%")
+                        col_h1.metric("Coverage Score", f"{cov_pct}%")
                         col_h2.metric("Portion Scale", f"{plan.scale}x")
-                        col_h3.metric("Method", rec.method.replace("_", " ").title())
+                        col_h3.metric("Cooking Method", rec.method.replace("_", " ").title())
+
+                        # Substitution Alerts
+                        if plan.swapped:
+                            st.write("---")
+                            st.write("##### 🔄 Culinary Substitutions Applied")
+                            for swap in plan.swapped:
+                                orig_name = nutrition_db.get(swap.original_id, {}).get("name", swap.original_id)
+                                sub_name = nutrition_db.get(swap.substitute_id, {}).get("name", swap.substitute_id)
+                                st.info(
+                                    f"✨ **Swapped `{orig_name}` → `{sub_name}`** (ratio: {swap.ratio}x)\n\n"
+                                    f"• **Why:** {swap.reason}\n\n"
+                                    f"• **Taste Note:** {swap.taste_note}\n\n"
+                                    f"• **Macro Check:** Validated within ±10% calorie/protein drift."
+                                )
 
                         st.write("---")
 
@@ -370,10 +358,19 @@ with tab_cook:
                         st.write("##### 🥗 Ingredients Breakdown")
                         ing_col1, ing_col2 = st.columns(2)
 
-                        # Available items vs missing items
                         pantry_items_in_recipe = []
                         missing_items_in_recipe = []
                         for ing in rec.ingredients:
+                            # Check if swapped
+                            swap_match = next((s for s in plan.swapped if s.original_id == ing.id), None)
+                            if swap_match:
+                                sub_id = swap_match.substitute_id
+                                sub_name = nutrition_db.get(sub_id, {}).get("name", sub_id)
+                                orig_name = nutrition_db.get(ing.id, {}).get("name", ing.id)
+                                friendly_sub = format_friendly_quantity(sub_id, ing.grams * plan.scale * swap_match.ratio)
+                                pantry_items_in_recipe.append(f"🟡 **{sub_name}** (swapped for {orig_name}): {friendly_sub}")
+                                continue
+
                             scaled_g = round(ing.grams * plan.scale, 1)
                             p_info = pantry_data.get(ing.id, {})
                             avail_g = float(p_info.get("quantity_g", 0.0))
@@ -403,7 +400,7 @@ with tab_cook:
                                 for item_text in missing_items_in_recipe:
                                     st.markdown(item_text)
                             else:
-                                st.markdown("🎉 *All ingredients available in pantry!*")
+                                st.markdown("🎉 *All ingredients covered!*")
 
                         st.write("---")
 
@@ -447,20 +444,29 @@ with tab_cook:
                         st.write("---")
                         st.write("##### 🧑‍🍳 Instructions")
                         for s_idx, step in enumerate(plan.final_steps, 1):
-                            st.markdown(f"**Step {s_idx}:** {step.text}")
+                            time_temp = []
+                            if step.minutes:
+                                time_temp.append(f"⏱️ {step.minutes} mins")
+                            if step.temp_c:
+                                time_temp.append(f"🌡️ {step.temp_c}°C")
+                            extra_str = f" *({', '.join(time_temp)})*" if time_temp else ""
+                            st.markdown(f"**Step {s_idx}:** {step.text}{extra_str}")
 
                         # "I Cooked This" Action Button
                         st.write("---")
                         if st.button(f"✅ I Cooked This ({rec.name})", key=f"cook_{rec.id}_{idx}"):
-                            # Deduct from pantry
-                            deductions = [
-                                (ing.id, round(ing.grams * plan.scale, 1))
-                                for ing in rec.ingredients
-                            ]
+                            # Deduct from pantry (using substituted ingredients if swapped)
+                            deductions = []
+                            for ing in rec.ingredients:
+                                swap_m = next((s for s in plan.swapped if s.original_id == ing.id), None)
+                                if swap_m:
+                                    deductions.append((swap_m.substitute_id, round(ing.grams * plan.scale * swap_m.ratio, 1)))
+                                else:
+                                    deductions.append((ing.id, round(ing.grams * plan.scale, 1)))
+
                             deduct_pantry_items(deductions)
                             log_cooked(rec.id, plan.scale)
                             st.success(f"🎉 Logged '{rec.name}' as cooked! Deducted ingredients from your pantry.")
-                            # Clear recommendations and rerun
                             if "recommendations" in st.session_state:
                                 del st.session_state["recommendations"]
                             st.rerun()
@@ -476,7 +482,6 @@ with tab_shopping:
     if not plans:
         st.info("💡 Run 'What can I cook tonight?' in the Cook tab to generate missing ingredient lists.")
     else:
-        # User can choose which recipe's shopping list or see all top recipes
         recipe_options = [f"#{idx} {p.recipe.name} ({int(p.coverage*100)}% coverage)" for idx, p in enumerate(plans, 1)]
         selected_plan_idx = st.selectbox("Select Meal to Shop For", options=range(len(plans)), format_func=lambda i: recipe_options[i])
 

@@ -1,14 +1,16 @@
-"""Deterministic planner and recommendation engine (v1)."""
+"""End-to-end recommendation planner with substitution resolution and step rewrites."""
 from typing import Dict, List, Optional, Set, Tuple
 
 from pantrypal.config import TOP_K
 from pantrypal.filters import filter_recipes, load_all_recipes
 from pantrypal.gaps import check_nutrient_gaps
+from pantrypal.llm import llm_rewrite_steps
 from pantrypal.models import Plan, Profile, Recipe, StepItem
 from pantrypal.nutrition import sum_nutrition
 from pantrypal.scaling import compute_scale_factor, scale_and_balance_ingredients
 from pantrypal.scoring import calculate_coverage, rank_recipes
 from pantrypal.shopping import build_shopping_list
+from pantrypal.substitutes import resolve_substitutions
 from pantrypal.targets import compute_targets
 
 
@@ -17,14 +19,17 @@ def recommend(
     utensils: Set[str],
     pantry: Dict[str, dict],
     top_k: int = TOP_K,
+    enable_llm_steps: bool = False,
 ) -> List[Plan]:
     """
-    End-to-end deterministic recommendation pipeline:
+    End-to-end recommendation pipeline:
     1. Compute daily and per-meal targets
     2. Filter recipes by owned utensils and diet mode
     3. Scale and balance ingredients, compute coverage and calorie delta
     4. Rank candidates by coverage, essential gaps, and calorie fit
-    5. Construct rich Plan objects for top-k recipes
+    5. Resolve missing ingredients via culinary substitution and macro verification loop
+    6. Rewrite cooking steps for owned utensils (if enabled/available)
+    7. Construct rich Plan objects for top-k recipes
     """
     targets = compute_targets(profile)
     all_recipes = load_all_recipes()
@@ -34,7 +39,7 @@ def recommend(
     if not eligible:
         return []
 
-    # Scoring and scaling candidates
+    # Initial scoring and ranking candidates
     scored_candidates = []
     for recipe in eligible:
         scale, _ = compute_scale_factor(recipe, targets.meal_kcal)
@@ -60,35 +65,50 @@ def recommend(
     ]
     ranked_tuples = rank_recipes(tuples_for_ranking)[:top_k]
 
-    # Map ranked recipes back to detailed candidate data
     cand_by_id = {c["recipe"].id: c for c in scored_candidates}
 
     plans: List[Plan] = []
     for recipe, _, _, _ in ranked_tuples:
         c = cand_by_id[recipe.id]
-        scaled_ing = c["scaled_ingredients"]
-        nutrition = c["nutrition"]
         scale = c["scale"]
-        coverage = c["coverage"]
-        missing = c["missing"]
 
-        gaps = check_nutrient_gaps(nutrition, profile.diet_mode, profile.meals_per_day)
-        shopping_list = build_shopping_list(scaled_ing, pantry)
+        # Attempt culinary substitution verify loop for missing ingredients
+        final_ing, swapped, remaining_missing = resolve_substitutions(
+            recipe=recipe,
+            scale=scale,
+            pantry=pantry,
+            diet_mode=profile.diet_mode,
+        )
 
-        # Baseline steps as StepItem objects
-        steps = [StepItem(text=step) for step in recipe.steps]
+        # Recompute final nutrition with swapped ingredients
+        final_nutrition = sum_nutrition(final_ing, recipe.method, recipe.servings, scale=1.0)
+
+        # Recalculate coverage with substitutions included
+        final_coverage, _, _ = calculate_coverage(final_ing, pantry)
+
+        # Micronutrient gap advisories
+        gaps = check_nutrient_gaps(final_nutrition, profile.diet_mode, profile.meals_per_day)
+
+        # Shopping list for remaining missing ingredients
+        shopping_list = build_shopping_list(remaining_missing, pantry)
+
+        # Step rewrites for utensils
+        if enable_llm_steps:
+            final_steps = llm_rewrite_steps(recipe.steps, list(utensils), recipe.method)
+        else:
+            final_steps = [StepItem(text=s) for s in recipe.steps]
 
         plans.append(
             Plan(
                 recipe=recipe,
                 scale=scale,
-                coverage=coverage,
-                missing=missing,
-                swapped=[],
-                final_nutrition=nutrition,
+                coverage=final_coverage,
+                missing=remaining_missing,
+                swapped=swapped,
+                final_nutrition=final_nutrition,
                 gaps=gaps,
                 shopping_list=shopping_list,
-                final_steps=steps,
+                final_steps=final_steps,
             )
         )
 
