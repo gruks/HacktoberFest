@@ -15,7 +15,7 @@ DAILY_VALUES_PATH = DATA_DIR / "daily_values.json"
 # LLM / Ollama configuration
 OLLAMA_BASE_URL = "http://localhost:11434"
 DEFAULT_MODEL = "qwen3-vl:4b"
-FALLBACK_MODELS = ["qwen2.5:3b-instruct", "llama3.2:3b", "qwen3:4b"]
+FALLBACK_MODELS = ["qwen2.5:3b-instruct", "llama3.2:3b", "qwen3-vl:4b"]
 LLM_TIMEOUT_S = 30
 LLM_TEMPERATURE = 0.2
 LLM_NUM_CTX = 2048

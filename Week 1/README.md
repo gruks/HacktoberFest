@@ -1,4 +1,4 @@
-# 🥘 PantryPal
+# PantryPal
 
 **A private, offline kitchen assistant that starts from what's in your pantry.**
 
@@ -10,7 +10,7 @@ Everything runs locally on a modest GPU (GTX 1650, 4 GB VRAM). No internet, no a
 
 ---
 
-## ✨ Features
+## Features
 
 - **Kitchen profile:** utensils (air fryer, microwave, stove, oven, ...) and diet mode
 - **Pantry tracking:** add what you have, with quantities and units
@@ -22,7 +22,7 @@ Everything runs locally on a modest GPU (GTX 1650, 4 GB VRAM). No internet, no a
 - **Shopping list:** only what's missing, with optional prices
 - **Utensil-aware steps:** "pan-fry" becomes "air fry at 200 °C for 12 min"
 
-## 🧠 How it works
+## How it works
 
 | Layer | Does | Technology |
 |---|---|---|
@@ -35,14 +35,14 @@ The model never calculates nutrition and never invents ingredients. It chooses f
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) for details and [PRD.md](PRD.md) for requirements.
 
-## 🖥️ Requirements
+## Requirements
 
 - Python 3.10+
 - [Ollama](https://ollama.com)
 - A GPU with 4 GB+ VRAM (CPU-only works, just slower)
 - About 4 GB free disk space for models
 
-## 🚀 Quick start
+## Quick start
 
 ```bash
 # 1. Clone
@@ -55,7 +55,7 @@ source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 
 # 3. Pull the models (one-time, needs internet)
-ollama pull qwen3:4b
+ollama pull qwen3-vl:4b
 ollama pull nomic-embed-text       # optional: better substitute ranking
 
 # 4. Run
@@ -66,7 +66,7 @@ Open `http://localhost:8501`.
 
 **Use it from your phone:** run `streamlit run app.py --server.address 0.0.0.0`, then open `http://<laptop-ip>:8501` on the same Wi-Fi.
 
-## 📖 Usage
+## Usage
 
 1. **Profile:** pick your diet mode, enter age, height, weight, activity and goal. PantryPal shows your daily and per-meal targets.
 2. **Kitchen:** tick your utensils and add pantry items.
@@ -78,19 +78,19 @@ Open `http://localhost:8501`.
 4. **Shopping:** see everything you're missing in one list.
 5. After cooking, press **I cooked this** to deduct the ingredients from your pantry.
 
-## ⚙️ Configuration
+## Configuration
 
 Edit `pantrypal/config.py`:
 
 | Setting | Default | Meaning |
 |---|---|---|
-| `MODEL_NAME` | `qwen3:4b` | Swap for `qwen2.5:3b-instruct` or `llama3.2:3b` |
+| `MODEL_NAME` | `qwen3-vl:4b` | Swap for `qwen2.5:3b-instruct` or `llama3.2:3b` |
 | `MACRO_TOLERANCE` | `0.10` | Max kcal/protein drift allowed for a substitution |
 | `SCALE_MIN` / `SCALE_MAX` | `0.5` / `2.5` | Portion scaling limits |
 | `TOP_K` | `5` | Recipes returned |
 | `LLM_TIMEOUT_S` | `30` | Fallback to code-only after this |
 
-## 📂 Project structure
+## Project structure
 
 ```
 pantrypal/
@@ -109,7 +109,7 @@ pantrypal/
 └── scripts/                data-prep helpers
 ```
 
-## 🧪 Tests
+## Tests
 
 ```bash
 pytest -q
@@ -117,7 +117,7 @@ pytest -q
 
 The core logic is tested without the LLM. Substitution tests use a mocked model.
 
-## 🍽️ Adding your own recipes
+## Adding your own recipes
 
 Add an entry to `data/recipes.json`:
 
@@ -139,7 +139,7 @@ Add an entry to `data/recipes.json`:
 
 Make sure every `id` exists in `data/nutrition.json`. The test suite checks this.
 
-## 🔓 Why open-source AI?
+## Why open-source AI?
 
 - **Private:** body stats, diet and pantry contents never leave the machine.
 - **Offline:** works without internet once models are downloaded.
@@ -147,11 +147,11 @@ Make sure every `id` exists in `data/nutrition.json`. The test suite checks this
 - **Swappable:** change the model with one config line.
 - **Tunable:** prompts and examples can be adapted to one person's taste.
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 PantryPal is a cooking and meal-planning helper, **not medical or dietary advice**. Nutrient values are estimates. Cooking adjustments are approximations. If you have a medical condition, are pregnant, or are considering a restrictive diet such as carnivore, talk to a qualified professional.
 
-## 🗺️ Roadmap
+## Roadmap
 
 - [ ] MCP server exposing PantryPal tools to any MCP client
 - [ ] Telegram bot front end
@@ -159,12 +159,12 @@ PantryPal is a cooking and meal-planning helper, **not medical or dietary advice
 - [ ] Weekly planner with a combined shopping list
 - [ ] More diets (vegetarian, high-fiber, low-sodium)
 
-## 🙏 Credits
+## Credits
 
 - Nutrition data: USDA FoodData Central and the Indian Food Composition Tables (IFCT 2017)
 - Models: Qwen (Alibaba), served locally with Ollama
-- Built for a friend. Thanks for being the beta tester. 🧡
+- Built for a friend. Thanks for being the beta tester.
 
-## 📄 License
+## License
 
 MIT

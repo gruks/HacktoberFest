@@ -8,7 +8,7 @@
 
 ## Before you start (30 min, night before if possible)
 
-- [ ] Install Ollama, then `ollama pull qwen3:4b` and `ollama pull nomic-embed-text`
+- [ ] Install Ollama, then `ollama pull qwen3-vl:4b` and `ollama pull nomic-embed-text`
 - [ ] Python 3.10+, create the venv, `pip install streamlit pydantic ollama pytest`
 - [ ] Create the GitHub repo and drop in `README.md`, `PRD.md`, `ARCHITECTURE.md`
 - [ ] Ask your friend: cuisine, which meals, height/weight/goal, which utensils, 10 favourite dishes
@@ -146,7 +146,7 @@ This is the longest manual step. Keep the dataset small.
 ## Time-saving tips
 
 - Write the nutrition data and recipes in a text editor with a template. Don't build an admin UI for them.
-- Use `qwen3:4b` with thinking disabled. Thinking mode burns tokens and time on a 1650.
+- Use `qwen3-vl:4b` with thinking disabled. Thinking mode burns tokens and time on a 1650.
 - Keep prompts short and always pass a schema.
 - Test the LLM in a standalone script first, before wiring it in.
 - Commit at the end of every block so you can always roll back.

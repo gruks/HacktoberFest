@@ -30,7 +30,7 @@
      │ nutrition     │      │                │
      └───────┬───────┘      │        ┌───────▼─────────┐
              │              │        │ Ollama          │
-     ┌───────▼──────────────▼──┐     │ qwen3:4b        │
+     ┌───────▼──────────────▼──┐     │ qwen3-vl:4b     │
      │   Data layer            │     │ (GPU, 4-bit)    │
      │ SQLite + JSON seeds     │     └─────────────────┘
      └─────────────────────────┘
@@ -283,7 +283,7 @@ Why the loop is in code: 3-4B models are unreliable at arithmetic, so quantities
 
 ### 7.1 Model and runtime
 
-- **Primary:** `qwen3:4b` through Ollama (≈ 2.5 GB at 4-bit)
+- **Primary:** `qwen3-vl:4b` through Ollama (≈ 2.5 GB at 4-bit)
 - **Fallbacks (config switch):** `qwen2.5:3b-instruct`, `llama3.2:3b`
 - **Embeddings (optional):** `nomic-embed-text` on CPU
 - **Settings:** `temperature 0.2`, `num_ctx 2048`, thinking disabled (`think=False`, or `/no_think` in the prompt for older Ollama versions)
