@@ -1,0 +1,634 @@
+[
+  {
+    "id": "airfryer_ribeye_steak",
+    "name": "Air Fryer Ribeye Steak",
+    "diet_tags": ["high_protein_carnivore"],
+    "carnivore_ok": true,
+    "requires_any": [["air_fryer"], ["stove"]],
+    "servings": 1,
+    "method": "air_fry",
+    "ingredients": [
+      {"id": "beef_steak_ribeye", "grams": 250, "role": "bulk_protein", "essential": true},
+      {"id": "butter", "grams": 15, "role": "fat", "essential": false},
+      {"id": "salt", "grams": 3, "role": "umami", "essential": false},
+      {"id": "black_pepper", "grams": 2, "role": "heat", "essential": false}
+    ],
+    "steps": [
+      "Season ribeye steak generously with salt and pepper.",
+      "Preheat air fryer to 200 C and cook steak for 10-12 minutes, flipping halfway.",
+      "Top with butter and let rest for 5 minutes before slicing."
+    ]
+  },
+  {
+    "id": "crispy_airfryer_chicken_thighs",
+    "name": "Crispy Air Fryer Chicken Thighs",
+    "diet_tags": ["high_protein_carnivore", "light_oil_healthy"],
+    "carnivore_ok": true,
+    "requires_any": [["air_fryer"], ["oven"]],
+    "servings": 1,
+    "method": "air_fry",
+    "ingredients": [
+      {"id": "chicken_thigh_raw", "grams": 300, "role": "bulk_protein", "essential": true},
+      {"id": "beef_tallow", "grams": 10, "role": "fat", "essential": false},
+      {"id": "salt", "grams": 4, "role": "umami", "essential": false},
+      {"id": "black_pepper", "grams": 2, "role": "heat", "essential": false}
+    ],
+    "steps": [
+      "Pat chicken thighs completely dry with paper towels.",
+      "Rub lightly with tallow, salt, and pepper.",
+      "Air fry at 195 C for 18-20 minutes until skin is crispy and internal temperature hits 74 C."
+    ]
+  },
+  {
+    "id": "carnivore_beef_egg_scramble",
+    "name": "Carnivore Beef and Egg Scramble",
+    "diet_tags": ["high_protein_carnivore"],
+    "carnivore_ok": true,
+    "requires_any": [["stove"], ["microwave"]],
+    "servings": 1,
+    "method": "pan_fry",
+    "ingredients": [
+      {"id": "beef_mince_regular", "grams": 200, "role": "bulk_protein", "essential": true},
+      {"id": "egg_whole", "grams": 100, "role": "creaminess", "essential": true},
+      {"id": "butter", "grams": 10, "role": "fat", "essential": false},
+      {"id": "salt", "grams": 3, "role": "umami", "essential": false}
+    ],
+    "steps": [
+      "Brown ground beef in a skillet over medium heat until fully cooked.",
+      "Crack eggs into the pan with a pat of butter and scramble together with the beef.",
+      "Season with salt and serve hot."
+    ]
+  },
+  {
+    "id": "pan_seared_salmon",
+    "name": "Butter Seared Salmon Fillet",
+    "diet_tags": ["high_protein_carnivore", "light_oil_healthy"],
+    "carnivore_ok": true,
+    "requires_any": [["stove"], ["air_fryer"]],
+    "servings": 1,
+    "method": "pan_fry",
+    "ingredients": [
+      {"id": "salmon_raw", "grams": 220, "role": "bulk_protein", "essential": true},
+      {"id": "butter", "grams": 12, "role": "fat", "essential": false},
+      {"id": "salt", "grams": 3, "role": "umami", "essential": false}
+    ],
+    "steps": [
+      "Season salmon fillet with salt.",
+      "Heat butter in skillet over medium-high heat until foaming.",
+      "Sear salmon skin-side down for 4 minutes, flip and cook 3 minutes more."
+    ]
+  },
+  {
+    "id": "bacon_and_beef_liver",
+    "name": "Bacon & Beef Liver Saute",
+    "diet_tags": ["high_protein_carnivore"],
+    "carnivore_ok": true,
+    "requires_any": [["stove"], ["air_fryer"]],
+    "servings": 1,
+    "method": "pan_fry",
+    "ingredients": [
+      {"id": "beef_liver", "grams": 150, "role": "bulk_protein", "essential": true},
+      {"id": "bacon", "grams": 50, "role": "fat", "essential": true},
+      {"id": "butter", "grams": 10, "role": "fat", "essential": false},
+      {"id": "salt", "grams": 2, "role": "umami", "essential": false}
+    ],
+    "steps": [
+      "Fry chopped bacon in skillet until crisp and fat renders.",
+      "Add sliced liver and butter to the bacon fat, searing for 2 minutes per side.",
+      "Season with salt and remove immediately to keep liver tender."
+    ]
+  },
+  {
+    "id": "airfryer_chicken_wings",
+    "name": "Crispy Air Fryer Wings",
+    "diet_tags": ["high_protein_carnivore"],
+    "carnivore_ok": true,
+    "requires_any": [["air_fryer"], ["oven"]],
+    "servings": 1,
+    "method": "air_fry",
+    "ingredients": [
+      {"id": "chicken_wings_raw", "grams": 300, "role": "bulk_protein", "essential": true},
+      {"id": "ghee", "grams": 10, "role": "fat", "essential": false},
+      {"id": "salt", "grams": 4, "role": "umami", "essential": false},
+      {"id": "black_pepper", "grams": 2, "role": "heat", "essential": false}
+    ],
+    "steps": [
+      "Toss chicken wings with melted ghee, salt, and black pepper.",
+      "Place in air fryer basket at 180 C for 15 minutes.",
+      "Increase heat to 205 C for 5 minutes to crisp up skin."
+    ]
+  },
+  {
+    "id": "cheesy_ground_beef_skillet",
+    "name": "Cheesy Ground Beef Skillet",
+    "diet_tags": ["high_protein_carnivore"],
+    "carnivore_ok": true,
+    "requires_any": [["stove"], ["microwave"]],
+    "servings": 1,
+    "method": "pan_fry",
+    "ingredients": [
+      {"id": "beef_mince_lean", "grams": 250, "role": "bulk_protein", "essential": true},
+      {"id": "cheddar_cheese", "grams": 40, "role": "fat", "essential": false},
+      {"id": "salt", "grams": 3, "role": "umami", "essential": false}
+    ],
+    "steps": [
+      "Cook ground beef in skillet over medium heat until browned.",
+      "Drain excess liquid and season with salt.",
+      "Layer cheddar cheese slices on top, cover with lid until melted."
+    ]
+  },
+  {
+    "id": "carnivore_pork_chop_sear",
+    "name": "Seared Pork Chop in Ghee",
+    "diet_tags": ["high_protein_carnivore"],
+    "carnivore_ok": true,
+    "requires_any": [["stove"], ["air_fryer"]],
+    "servings": 1,
+    "method": "pan_fry",
+    "ingredients": [
+      {"id": "pork_chop", "grams": 220, "role": "bulk_protein", "essential": true},
+      {"id": "ghee", "grams": 12, "role": "fat", "essential": false},
+      {"id": "salt", "grams": 3, "role": "umami", "essential": false},
+      {"id": "black_pepper", "grams": 1, "role": "heat", "essential": false}
+    ],
+    "steps": [
+      "Season pork chop with salt and pepper.",
+      "Heat ghee in a pan over medium-high heat.",
+      "Sear pork chop 4-5 minutes per side until internal temperature reaches 63 C."
+    ]
+  },
+  {
+    "id": "microwave_poached_salmon",
+    "name": "Quick Microwave Butter Salmon",
+    "diet_tags": ["high_protein_carnivore", "light_oil_healthy"],
+    "carnivore_ok": true,
+    "requires_any": [["microwave"]],
+    "servings": 1,
+    "method": "microwave",
+    "ingredients": [
+      {"id": "salmon_raw", "grams": 200, "role": "bulk_protein", "essential": true},
+      {"id": "butter", "grams": 10, "role": "fat", "essential": false},
+      {"id": "water", "grams": 30, "role": "liquid", "essential": false},
+      {"id": "salt", "grams": 2, "role": "umami", "essential": false}
+    ],
+    "steps": [
+      "Place salmon in a microwave-safe dish with 2 tablespoons of water.",
+      "Top with butter and sprinkle with salt.",
+      "Cover loosely and microwave on HIGH for 3 to 3.5 minutes until opaque throughout."
+    ]
+  },
+  {
+    "id": "sirloin_butter_baste",
+    "name": "Pan-Basted Sirloin Steak",
+    "diet_tags": ["high_protein_carnivore"],
+    "carnivore_ok": true,
+    "requires_any": [["stove"], ["air_fryer"]],
+    "servings": 1,
+    "method": "pan_fry",
+    "ingredients": [
+      {"id": "beef_steak_sirloin", "grams": 250, "role": "bulk_protein", "essential": true},
+      {"id": "butter", "grams": 15, "role": "fat", "essential": false},
+      {"id": "salt", "grams": 3, "role": "umami", "essential": false}
+    ],
+    "steps": [
+      "Pat sirloin dry and season with salt.",
+      "Sear in hot skillet for 3 minutes per side.",
+      "Drop in butter and spoon melted butter repeatedly over the steak for 1 minute."
+    ]
+  },
+  {
+    "id": "sausage_and_egg_bake",
+    "name": "Air Fryer Sausage & Egg Bowl",
+    "diet_tags": ["high_protein_carnivore"],
+    "carnivore_ok": true,
+    "requires_any": [["air_fryer"], ["microwave"], ["stove"]],
+    "servings": 1,
+    "method": "air_fry",
+    "ingredients": [
+      {"id": "sausage", "grams": 150, "role": "bulk_protein", "essential": true},
+      {"id": "egg_whole", "grams": 100, "role": "creaminess", "essential": true},
+      {"id": "cheddar_cheese", "grams": 25, "role": "fat", "essential": false},
+      {"id": "salt", "grams": 2, "role": "umami", "essential": false}
+    ],
+    "steps": [
+      "Slice sausages into bite-sized pieces and cook in air fryer at 180 C for 6 minutes.",
+      "Crack eggs into heatproof ramekin with cooked sausage and cheddar cheese.",
+      "Air fry at 160 C for 5 minutes until egg whites set."
+    ]
+  },
+  {
+    "id": "boiled_egg_and_tuna_bowl",
+    "name": "Tuna & Egg Protein Bowl",
+    "diet_tags": ["high_protein_carnivore"],
+    "carnivore_ok": true,
+    "requires_any": [["boil"], ["stove"], ["microwave"]],
+    "servings": 1,
+    "method": "boil",
+    "ingredients": [
+      {"id": "tuna_canned", "grams": 150, "role": "bulk_protein", "essential": true},
+      {"id": "egg_whole", "grams": 100, "role": "creaminess", "essential": true},
+      {"id": "butter", "grams": 10, "role": "fat", "essential": false},
+      {"id": "salt", "grams": 2, "role": "umami", "essential": false}
+    ],
+    "steps": [
+      "Boil eggs in water for 8 minutes, peel and chop.",
+      "Drain canned tuna and combine in a bowl with warm melted butter.",
+      "Fold in chopped boiled eggs and season with salt."
+    ]
+  },
+  {
+    "id": "airfryer_lemon_chicken",
+    "name": "Air Fryer Lemon Chicken Thighs",
+    "diet_tags": ["light_oil_healthy"],
+    "carnivore_ok": false,
+    "requires_any": [["air_fryer"], ["oven"]],
+    "servings": 1,
+    "method": "air_fry",
+    "ingredients": [
+      {"id": "chicken_thigh_raw", "grams": 250, "role": "bulk_protein", "essential": true},
+      {"id": "lemon_juice", "grams": 20, "role": "acid", "essential": false},
+      {"id": "garlic", "grams": 10, "role": "umami", "essential": false},
+      {"id": "olive_oil", "grams": 5, "role": "fat", "essential": false},
+      {"id": "oregano", "grams": 2, "role": "umami", "essential": false},
+      {"id": "salt", "grams": 3, "role": "umami", "essential": false}
+    ],
+    "steps": [
+      "Mix lemon juice, minced garlic, olive oil, oregano, and salt.",
+      "Coat chicken thighs thoroughly in the marinade.",
+      "Air fry at 190 C for 15-18 minutes until golden and cooked through."
+    ]
+  },
+  {
+    "id": "microwave_steamed_fish",
+    "name": "Microwave Ginger Soy Steamed Fish",
+    "diet_tags": ["light_oil_healthy"],
+    "carnivore_ok": false,
+    "requires_any": [["microwave"]],
+    "servings": 1,
+    "method": "microwave",
+    "ingredients": [
+      {"id": "white_fish_fillet", "grams": 220, "role": "bulk_protein", "essential": true},
+      {"id": "ginger", "grams": 8, "role": "heat", "essential": false},
+      {"id": "soy_sauce", "grams": 15, "role": "umami", "essential": false},
+      {"id": "sesame_oil", "grams": 5, "role": "fat", "essential": false},
+      {"id": "green_chilli", "grams": 5, "role": "heat", "essential": false}
+    ],
+    "steps": [
+      "Place white fish fillet on a microwave-safe plate and top with julienned ginger and chilli.",
+      "Drizzle with soy sauce and sesame oil.",
+      "Cover with microwave-safe lid and cook on HIGH for 3 to 4 minutes until fish flakes easily."
+    ]
+  },
+  {
+    "id": "garlic_chicken_breast_stirfry",
+    "name": "Garlic Chicken & Broccoli Skillet",
+    "diet_tags": ["light_oil_healthy"],
+    "carnivore_ok": false,
+    "requires_any": [["stove"], ["microwave"]],
+    "servings": 1,
+    "method": "pan_fry",
+    "ingredients": [
+      {"id": "chicken_breast_raw", "grams": 220, "role": "bulk_protein", "essential": true},
+      {"id": "broccoli_raw", "grams": 150, "role": "crunch", "essential": false},
+      {"id": "garlic", "grams": 10, "role": "umami", "essential": false},
+      {"id": "soy_sauce", "grams": 15, "role": "umami", "essential": false},
+      {"id": "olive_oil", "grams": 8, "role": "fat", "essential": false}
+    ],
+    "steps": [
+      "Dice chicken breast into cubes and stir-fry in olive oil with minced garlic until cooked.",
+      "Add broccoli florets and 2 tablespoons of water, cover pan for 3 minutes to steam.",
+      "Stir in soy sauce and toss on high heat for 1 minute."
+    ]
+  },
+  {
+    "id": "spinach_and_egg_scramble",
+    "name": "Spinach & Tomato Egg Scramble",
+    "diet_tags": ["light_oil_healthy"],
+    "carnivore_ok": false,
+    "requires_any": [["stove"], ["microwave"]],
+    "servings": 1,
+    "method": "pan_fry",
+    "ingredients": [
+      {"id": "egg_whole", "grams": 150, "role": "bulk_protein", "essential": true},
+      {"id": "spinach_raw", "grams": 80, "role": "bulk_protein", "essential": false},
+      {"id": "tomato", "grams": 80, "role": "acid", "essential": false},
+      {"id": "olive_oil", "grams": 6, "role": "fat", "essential": false},
+      {"id": "salt", "grams": 2, "role": "umami", "essential": false}
+    ],
+    "steps": [
+      "Heat olive oil in pan and sauté diced tomato and spinach until wilted.",
+      "Whisk eggs with salt and pour into the pan.",
+      "Gently scramble over medium-low heat until creamy and softly set."
+    ]
+  },
+  {
+    "id": "airfryer_spiced_shrimp",
+    "name": "Air Fryer Paprika Garlic Shrimp",
+    "diet_tags": ["light_oil_healthy"],
+    "carnivore_ok": false,
+    "requires_any": [["air_fryer"], ["stove"]],
+    "servings": 1,
+    "method": "air_fry",
+    "ingredients": [
+      {"id": "shrimp_raw", "grams": 220, "role": "bulk_protein", "essential": true},
+      {"id": "olive_oil", "grams": 6, "role": "fat", "essential": false},
+      {"id": "paprika", "grams": 3, "role": "sweet", "essential": false},
+      {"id": "garlic", "grams": 5, "role": "umami", "essential": false},
+      {"id": "lemon_juice", "grams": 10, "role": "acid", "essential": false},
+      {"id": "salt", "grams": 2, "role": "umami", "essential": false}
+    ],
+    "steps": [
+      "Toss peeled shrimp with olive oil, minced garlic, paprika, and salt.",
+      "Spread evenly in air fryer basket and cook at 190 C for 5-6 minutes.",
+      "Squeeze fresh lemon juice over hot shrimp before serving."
+    ]
+  },
+  {
+    "id": "tuna_cucumber_salad",
+    "name": "Greek Yogurt Tuna Salad",
+    "diet_tags": ["light_oil_healthy"],
+    "carnivore_ok": false,
+    "requires_any": [["stove"], ["microwave"], ["air_fryer"]],
+    "servings": 1,
+    "method": "microwave",
+    "ingredients": [
+      {"id": "tuna_canned", "grams": 160, "role": "bulk_protein", "essential": true},
+      {"id": "cucumber", "grams": 120, "role": "crunch", "essential": false},
+      {"id": "tomato", "grams": 80, "role": "acid", "essential": false},
+      {"id": "greek_yogurt", "grams": 60, "role": "creaminess", "essential": false},
+      {"id": "lemon_juice", "grams": 10, "role": "acid", "essential": false},
+      {"id": "black_pepper", "grams": 1, "role": "heat", "essential": false}
+    ],
+    "steps": [
+      "Drain canned tuna well into a bowl.",
+      "Dice cucumber and tomato, adding to the tuna.",
+      "Fold in greek yogurt, lemon juice, and black pepper until creamy."
+    ]
+  },
+  {
+    "id": "curried_paneer_skillet",
+    "name": "Homestyle Paneer & Tomato Bhurji",
+    "diet_tags": ["light_oil_healthy"],
+    "carnivore_ok": false,
+    "requires_any": [["stove"], ["microwave"]],
+    "servings": 1,
+    "method": "pan_fry",
+    "ingredients": [
+      {"id": "paneer", "grams": 150, "role": "bulk_protein", "essential": true},
+      {"id": "onion", "grams": 60, "role": "sweet", "essential": false},
+      {"id": "tomato", "grams": 80, "role": "acid", "essential": false},
+      {"id": "ginger", "grams": 5, "role": "heat", "essential": false},
+      {"id": "turmeric", "grams": 2, "role": "heat", "essential": false},
+      {"id": "cumin", "grams": 2, "role": "umami", "essential": false},
+      {"id": "olive_oil", "grams": 6, "role": "fat", "essential": false},
+      {"id": "salt", "grams": 2, "role": "umami", "essential": false}
+    ],
+    "steps": [
+      "Sauté chopped onion and ginger in olive oil with cumin until softened.",
+      "Add diced tomatoes, turmeric, and salt; cook into a soft masala base.",
+      "Crumble in paneer and stir gently for 3 minutes until warmed through."
+    ]
+  },
+  {
+    "id": "mediterranean_chicken_bowl",
+    "name": "Mediterranean Chicken & Pepper Bowl",
+    "diet_tags": ["light_oil_healthy"],
+    "carnivore_ok": false,
+    "requires_any": [["air_fryer"], ["stove"]],
+    "servings": 1,
+    "method": "air_fry",
+    "ingredients": [
+      {"id": "chicken_breast_raw", "grams": 220, "role": "bulk_protein", "essential": true},
+      {"id": "bell_pepper", "grams": 100, "role": "sweet", "essential": false},
+      {"id": "cucumber", "grams": 100, "role": "crunch", "essential": false},
+      {"id": "olive_oil", "grams": 8, "role": "fat", "essential": false},
+      {"id": "oregano", "grams": 2, "role": "umami", "essential": false},
+      {"id": "lemon_juice", "grams": 10, "role": "acid", "essential": false}
+    ],
+    "steps": [
+      "Cut chicken and bell pepper into chunks, toss with olive oil, oregano, and salt.",
+      "Air fry at 190 C for 12 minutes until chicken is tender.",
+      "Toss with diced fresh cucumber and lemon juice in a bowl."
+    ]
+  },
+  {
+    "id": "microwave_broccoli_steamed_chicken",
+    "name": "Microwave Steamed Chicken & Broccoli",
+    "diet_tags": ["light_oil_healthy"],
+    "carnivore_ok": false,
+    "requires_any": [["microwave"]],
+    "servings": 1,
+    "method": "microwave",
+    "ingredients": [
+      {"id": "chicken_breast_raw", "grams": 200, "role": "bulk_protein", "essential": true},
+      {"id": "broccoli_raw", "grams": 140, "role": "crunch", "essential": false},
+      {"id": "soy_sauce", "grams": 15, "role": "umami", "essential": false},
+      {"id": "garlic", "grams": 5, "role": "umami", "essential": false},
+      {"id": "water", "grams": 30, "role": "liquid", "essential": false}
+    ],
+    "steps": [
+      "Thinly slice chicken breast and place in microwave bowl with broccoli florets.",
+      "Add minced garlic, soy sauce, and 2 tablespoons water.",
+      "Cover bowl and microwave on HIGH for 4 minutes until chicken is cooked through."
+    ]
+  },
+  {
+    "id": "lentil_dal_soup",
+    "name": "Comforting Spiced Red Lentil Dal",
+    "diet_tags": ["light_oil_healthy"],
+    "carnivore_ok": false,
+    "requires_any": [["pressure_cooker"], ["stove"]],
+    "servings": 1,
+    "method": "boil",
+    "ingredients": [
+      {"id": "lentils_dry", "grams": 100, "role": "bulk_protein", "essential": true},
+      {"id": "tomato", "grams": 80, "role": "acid", "essential": false},
+      {"id": "onion", "grams": 50, "role": "sweet", "essential": false},
+      {"id": "garlic", "grams": 5, "role": "umami", "essential": false},
+      {"id": "turmeric", "grams": 2, "role": "heat", "essential": false},
+      {"id": "cumin", "grams": 2, "role": "umami", "essential": false},
+      {"id": "water", "grams": 350, "role": "liquid", "essential": true},
+      {"id": "salt", "grams": 3, "role": "umami", "essential": false}
+    ],
+    "steps": [
+      "Combine rinsed lentils, water, diced tomato, turmeric, and salt in pot.",
+      "Bring to a boil and simmer for 20 minutes until tender and creamy.",
+      "Temper with sautéed onion, garlic, and cumin, then fold together."
+    ]
+  },
+  {
+    "id": "airfryer_roasted_cauliflower_tofu",
+    "name": "Spiced Tofu & Cauliflower Roast",
+    "diet_tags": ["light_oil_healthy"],
+    "carnivore_ok": false,
+    "requires_any": [["air_fryer"], ["oven"]],
+    "servings": 1,
+    "method": "air_fry",
+    "ingredients": [
+      {"id": "tofu_firm", "grams": 200, "role": "bulk_protein", "essential": true},
+      {"id": "cauliflower", "grams": 150, "role": "crunch", "essential": false},
+      {"id": "olive_oil", "grams": 8, "role": "fat", "essential": false},
+      {"id": "turmeric", "grams": 2, "role": "heat", "essential": false},
+      {"id": "paprika", "grams": 2, "role": "sweet", "essential": false},
+      {"id": "salt", "grams": 2, "role": "umami", "essential": false}
+    ],
+    "steps": [
+      "Cube tofu and break cauliflower into small florets.",
+      "Toss with olive oil, turmeric, paprika, and salt.",
+      "Air fry at 195 C for 14 minutes, shaking basket halfway until crispy."
+    ]
+  },
+  {
+    "id": "masala_scrambled_eggs",
+    "name": "Indian Style Masala Egg Scramble (Anda Bhurji)",
+    "diet_tags": ["light_oil_healthy"],
+    "carnivore_ok": false,
+    "requires_any": [["stove"], ["microwave"]],
+    "servings": 1,
+    "method": "pan_fry",
+    "ingredients": [
+      {"id": "egg_whole", "grams": 150, "role": "bulk_protein", "essential": true},
+      {"id": "onion", "grams": 50, "role": "sweet", "essential": false},
+      {"id": "tomato", "grams": 60, "role": "acid", "essential": false},
+      {"id": "green_chilli", "grams": 5, "role": "heat", "essential": false},
+      {"id": "turmeric", "grams": 1, "role": "heat", "essential": false},
+      {"id": "olive_oil", "grams": 6, "role": "fat", "essential": false},
+      {"id": "salt", "grams": 2, "role": "umami", "essential": false}
+    ],
+    "steps": [
+      "Sauté chopped onions and green chilli in olive oil until golden.",
+      "Add tomatoes, turmeric, and salt; cook until soft.",
+      "Pour in whisked eggs and scramble on medium heat until set."
+    ]
+  },
+  {
+    "id": "chickpea_spinach_curry",
+    "name": "Quick Chickpea & Spinach Curry",
+    "diet_tags": ["light_oil_healthy"],
+    "carnivore_ok": false,
+    "requires_any": [["stove"], ["microwave"]],
+    "servings": 1,
+    "method": "pan_fry",
+    "ingredients": [
+      {"id": "chickpeas_canned", "grams": 200, "role": "bulk_protein", "essential": true},
+      {"id": "spinach_raw", "grams": 100, "role": "bulk_protein", "essential": false},
+      {"id": "tomato_paste", "grams": 30, "role": "acid", "essential": false},
+      {"id": "garlic", "grams": 5, "role": "umami", "essential": false},
+      {"id": "cumin", "grams": 2, "role": "umami", "essential": false},
+      {"id": "olive_oil", "grams": 6, "role": "fat", "essential": false},
+      {"id": "water", "grams": 60, "role": "liquid", "essential": false}
+    ],
+    "steps": [
+      "Heat olive oil in pan and sauté garlic with cumin.",
+      "Stir in tomato paste and water, then add rinsed chickpeas.",
+      "Simmer for 5 minutes, fold in fresh spinach until wilted, and serve."
+    ]
+  },
+  {
+    "id": "honey_mustard_chicken_breast",
+    "name": "Air Fryer Honey Mustard Chicken",
+    "diet_tags": ["light_oil_healthy"],
+    "carnivore_ok": false,
+    "requires_any": [["air_fryer"], ["oven"]],
+    "servings": 1,
+    "method": "air_fry",
+    "ingredients": [
+      {"id": "chicken_breast_raw", "grams": 250, "role": "bulk_protein", "essential": true},
+      {"id": "mustard", "grams": 15, "role": "acid", "essential": false},
+      {"id": "honey", "grams": 10, "role": "sweet", "essential": false},
+      {"id": "olive_oil", "grams": 5, "role": "fat", "essential": false},
+      {"id": "garlic", "grams": 5, "role": "umami", "essential": false},
+      {"id": "salt", "grams": 2, "role": "umami", "essential": false}
+    ],
+    "steps": [
+      "Whisk mustard, honey, olive oil, garlic, and salt.",
+      "Coat chicken breast with the glaze.",
+      "Air fry at 185 C for 12-14 minutes until juicy and thoroughly cooked."
+    ]
+  },
+  {
+    "id": "airfryer_sweet_potato_and_chicken",
+    "name": "Air Fryer Chicken & Sweet Potato Hash",
+    "diet_tags": ["light_oil_healthy"],
+    "carnivore_ok": false,
+    "requires_any": [["air_fryer"], ["oven"]],
+    "servings": 1,
+    "method": "air_fry",
+    "ingredients": [
+      {"id": "chicken_breast_raw", "grams": 200, "role": "bulk_protein", "essential": true},
+      {"id": "sweet_potato", "grams": 150, "role": "starch", "essential": false},
+      {"id": "olive_oil", "grams": 8, "role": "fat", "essential": false},
+      {"id": "paprika", "grams": 2, "role": "sweet", "essential": false},
+      {"id": "salt", "grams": 2, "role": "umami", "essential": false}
+    ],
+    "steps": [
+      "Cut chicken and sweet potato into 1-inch cubes.",
+      "Toss with olive oil, paprika, and salt.",
+      "Air fry at 190 C for 15 minutes, shaking basket at 7 minutes."
+    ]
+  },
+  {
+    "id": "white_fish_tomato_skillet",
+    "name": "Skillet Fish in Rustic Tomato Sauce",
+    "diet_tags": ["light_oil_healthy"],
+    "carnivore_ok": false,
+    "requires_any": [["stove"], ["microwave"]],
+    "servings": 1,
+    "method": "pan_fry",
+    "ingredients": [
+      {"id": "white_fish_fillet", "grams": 220, "role": "bulk_protein", "essential": true},
+      {"id": "tomato", "grams": 120, "role": "acid", "essential": false},
+      {"id": "onion", "grams": 50, "role": "sweet", "essential": false},
+      {"id": "garlic", "grams": 5, "role": "umami", "essential": false},
+      {"id": "olive_oil", "grams": 8, "role": "fat", "essential": false},
+      {"id": "oregano", "grams": 2, "role": "umami", "essential": false}
+    ],
+    "steps": [
+      "Sauté onion and garlic in olive oil until soft.",
+      "Add diced tomatoes and oregano, simmering for 5 minutes into a sauce.",
+      "Nestle fish fillets into the sauce, cover and cook for 6 minutes."
+    ]
+  },
+  {
+    "id": "cottage_cheese_avocado_bowl",
+    "name": "High-Protein Cottage Cheese & Avocado Bowl",
+    "diet_tags": ["light_oil_healthy"],
+    "carnivore_ok": false,
+    "requires_any": [["microwave"], ["stove"], ["air_fryer"]],
+    "servings": 1,
+    "method": "microwave",
+    "ingredients": [
+      {"id": "cottage_cheese", "grams": 200, "role": "bulk_protein", "essential": true},
+      {"id": "avocado", "grams": 80, "role": "fat", "essential": false},
+      {"id": "tomato", "grams": 80, "role": "acid", "essential": false},
+      {"id": "black_pepper", "grams": 1, "role": "heat", "essential": false},
+      {"id": "salt", "grams": 1, "role": "umami", "essential": false}
+    ],
+    "steps": [
+      "Spoon cottage cheese into a bowl.",
+      "Dice fresh avocado and tomato, arranging on top.",
+      "Season with salt and freshly cracked black pepper."
+    ]
+  },
+  {
+    "id": "airfryer_cabbage_and_sausage",
+    "name": "Air Fryer Sausage & Crispy Cabbage",
+    "diet_tags": ["light_oil_healthy"],
+    "carnivore_ok": false,
+    "requires_any": [["air_fryer"], ["stove"]],
+    "servings": 1,
+    "method": "air_fry",
+    "ingredients": [
+      {"id": "sausage", "grams": 150, "role": "bulk_protein", "essential": true},
+      {"id": "cabbage", "grams": 180, "role": "crunch", "essential": false},
+      {"id": "onion", "grams": 50, "role": "sweet", "essential": false},
+      {"id": "olive_oil", "grams": 6, "role": "fat", "essential": false},
+      {"id": "black_pepper", "grams": 1, "role": "heat", "essential": false}
+    ],
+    "steps": [
+      "Slice sausages into coins and shred cabbage coarsely.",
+      "Toss cabbage and onion with olive oil, black pepper, and sausage slices.",
+      "Air fry at 185 C for 12 minutes, shaking midway until cabbage edges caramelize."
+    ]
+  }
+]
